@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Fun with click events</title>
+
+<script type="text/javascript"
+    src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+
+<script type="text/javascript"
+    src="https://ajax.googleapis.com/ajax/libs/dojo/1.6.0/dojo/dojo.xd.js"></script>
+
+</head>
+
+<body>
+
+<h1>Fun with click events</h1>
+
+<ol>
+
+<li><a href="http://google.com">Search</a>: boring old link.</li>
+
+<li><a href="http://google.com"
+        onclick="alert('google is garbage!  Use duckduckgo.com'); return false;">Search</a>: use an onclick attribute.</li>
+
+<li><a href="http://google.com"
+        onclick="alert('google is garbage!  Use duckduckgo.com');">Search</a>: Whoops! I forgot the return false.</li>
+
+<li>
+
+<script>
+var handle_click = function () {
+    alert('Same thing...');
+    return false;
+};
+</script>
+
+<a href="http://google.com" onclick="return handle_click();">Search</a>: use onclick and a function defined elsewhere.</li>
+
+<li><a href="http://google.com" onclick="handle_click();">Search</a>: forgot the return keyword!</li>
+
+<li><a id="a-tag" href="http://google.com">Search</a>: use fancypants addEventListener to bind a function.</li>
+
+<script>
+
+var a = document.getElementById('a-tag');
+
+a.addEventListener('click', function (event) {
+    alert("Inside my click listener");
+    event.preventDefault();
+});
+
+</script>
+
+</li>
+
+<li><a id="a-tag-dojo" href="http://google.com">Search</a>: use dojo</a></li>
+
+<script>
+
+dojo.query('#a-tag-dojo').connect('click', function (event) {
+    alert("dojo!");
+    dojo.stopEvent(event);
+});
+
+</script>
+
+</li>
+
+<li><a id="a-tag-jquery" href="http://google.com">Search</a>: use jquery</a></li>
+
+<script>
+
+$("#a-tag-jquery").click(function () {
+    alert("jquery");
+    return false;
+});
+
+</script>
+
+</li>
+
+</ol>
+
+<div id="popup-goes-here" style="border:3px solid gray;width:200px;height:200px;"></div>
+
+</body>
+
+</html>
