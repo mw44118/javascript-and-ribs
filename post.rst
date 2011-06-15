@@ -4,10 +4,41 @@ Javascript and Ribs
 
 .. contents::
 
-Fundamentals
-============
+Fun with anchor tags
+====================
 
-*   fun with click events
+*   prevent the link from getting followed
 *   extract the href out of the anchor tags
-*   load the page into a popup
-*
+*   load it into the dom
+
+My favorite jquery UI components
+================================
+
+*   dialog
+*   datepicker
+*   autocomplete
+*   slider
+
+
+Deferred objects
+================
+
+*   Set a callback to fire after all the async objects finish
+    *   dojo version
+    *   jquery version
+
+Dojo publish subscribe and jquery custom events
+===============================================
+
+*   We need a way for different events to communicate with each other.
+*   Dojo offers publish / subscribe
+*   jquery offers custom events
+*   Fun dojo fact: subscribing after publish happens will get the event
+
+Performance discoveries
+=======================
+
+*   DTL is often fine, sometimes nightmarish
+*   Break pages down so that you can pull in chunks of the page via ajax
+*   $.load is great, but avoid using a selector at the end
+*   $.find is a resource pig
