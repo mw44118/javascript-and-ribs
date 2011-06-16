@@ -108,12 +108,8 @@ var handle_click = function () {
 </tr>
 
 <tr>
-<td><a id="a-tag" href="http://google.com">Search</a></td>
-<td>&lt;a id="a-tag" href="http://google.com"&gt;Search&lt;/a&gt;</td>
-</tr>
-
-<tr>
-<td><script>
+<td><a id="a-tag" href="http://google.com">Search</a>
+<script>
 
 var a = document.getElementById('a-tag');
 
@@ -123,7 +119,8 @@ a.addEventListener('click', function (event) {
 });
 
 </script></td>
-<td>&lt;script&gt;
+<td>&lt;a id="a-tag" href="http://google.com"&gt;Search&lt;/a&gt;
+&lt;script&gt;
 
 var a = document.getElementById('a-tag');
 
@@ -134,7 +131,6 @@ a.addEventListener('click', function (event) {
 
 &lt;/script&gt;</td>
 </tr>
-
 <tr>
 <td><a id="a-tag-dojo" href="http://google.com">Search</a>
 
