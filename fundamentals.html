@@ -216,18 +216,65 @@ a_js.addEventListener('click', function (event) {
 
 </td>
 
-<td>escaped code goes here</td>
+<td>&lt;a id="js-extract" href="/javascript-and-ribs/popup.html"&gt;with javascript&lt;/a&gt;
+
+&lt;script&gt;
+var a_js = document.getElementById('js-extract');
+
+var e;
+
+a_js.addEventListener('click', function (event) {
+    e = event;
+    alert(event.target.attributes.href.value);
+    event.preventDefault();
+});
+
+&lt;/script&gt;
+</td>
 
 </tr>
 
 <tr>
-<td><a href="/javascript-and-ribs/popup.html">with dojo</a></td>
-<td>escaped code goes here</td>
+<td><a id="dojo" onclick="showDialog" href="/javascript-and-ribs/popup.html">with dojo</a> <script type="text/javascript">
+dojo.require("dijit.Dialog");
+myDialog=new dijit.Dialog({
+title: "The href",
+content: dojo.attr(dojo.byId("dojo"), "href"),
+style: "width: 200px"});
+function showDialog(){
+myDialog.show();
+}
+</script></td>
+<td>&lt;a id="dojo" onclick="showDialog" href="/javascript-and-ribs/popup.html"&gt;with dojo&lt;/a&gt; &lt;script type="text/javascript"&gt;
+dojo.require("dijit.Dialog");
+myDialog=new dijit.Dialog({
+title: "The href",
+content: dojo.attr(dojo.byId("dojo"), "href"),
+style: "width: 200px"});
+function showDialog(){
+myDialog.show();
+}
+&lt;/script&gt;</td>
 </tr>
 
 <tr>
-<td><a href="/javascript-and-ribs/popup.html">with jquery</a></td>
-<td>escaped code goes here</td>
+<td><a href="/javascript-and-ribs/popup.html">with jquery</a>
+
+<script>
+    $("a").click(function () { 
+      alert($(this).attr("href")); 
+	  event.preventDefault();
+    });
+	</script>
+	</td>
+<td>&lt;a href="/javascript-and-ribs/popup.html"&gt;with jquery&lt;/a&gt;
+
+&lt;script&gt;
+    $("a").click(function () { 
+      alert($(this).attr("href")); 
+	  event.preventDefault();
+    });
+	&lt;/script&gt;</td>
 </tr>
 
 </tbody>
@@ -252,18 +299,14 @@ a_js.addEventListener('click', function (event) {
 <tr>
 
 <td>
-<a id="js-extract" href="/javascript-and-ribs/popup.html">with javascript</a>
+<a id="js-extract" onclick="loadJsHtml" href="/javascript-and-ribs/popup.html">with javascript</a>
 
-<script>
-var a_js = document.getElementById('js-extract');
-
-var e;
-
-a_js.addEventListener('click', function (event) {
-    e = event;
-    alert(event.target.attributes.href.value);
-    event.preventDefault();
-});
+<script type="text/javascript">
+function loadJsHtml(){
+var myXHR = new XMLHttpRequest();
+myXHR.open('GET',event.target.attributes.href.value,true);
+	document.getElementbyId('popup-goes-here').innerHTML=myXHR.responseText;
+}
 
 </script>
 
@@ -274,12 +317,31 @@ a_js.addEventListener('click', function (event) {
 </tr>
 
 <tr>
-<td><a href="/javascript-and-ribs/popup.html">with dojo</a></td>
+<td><a onclick="loadHtml" href="/javascript-and-ribs/popup.html">with dojo</a>
+function loadHtml(){
+		dojo.xhrGet({url: '/javascript-and-ribs/popup.html',
+			     handleAs: "text",
+           		    load: function(data) {
+ 			    	dojo.byId('popup-goes-here').innerHTML = data;
+		            },
+         		    error: function(error) {
+               			AJAXNode.innerHTML = "AJAX error: " + error;
+		            }
+		});
+		}
+		</td>
 <td>escaped code goes here</td>
 </tr>
 
 <tr>
-<td><a href="/javascript-and-ribs/popup.html">with jquery</a></td>
+<td><a href="/javascript-and-ribs/popup.html">with jquery</a>
+
+<script>
+    $("a").click(function () { 
+		$("popup-goes-here").load($(this).attr("href"));
+    });
+	</script>
+	</td>
 <td>escaped code goes here</td>
 </tr>
 
