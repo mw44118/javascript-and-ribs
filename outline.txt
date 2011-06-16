@@ -19,7 +19,6 @@ My favorite jquery UI components
 *   autocomplete
 *   slider
 
-
 Deferred objects
 ================
 
