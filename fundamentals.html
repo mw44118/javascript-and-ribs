@@ -184,6 +184,16 @@ a_js.addEventListener('click', function (event) {
 
 </tr>
 
+<tr>
+<td><a href="/javascript-and-ribs/popup.html">with dojo</a></td>
+<td>escaped code goes here</td>
+</tr>
+
+<tr>
+<td><a href="/javascript-and-ribs/popup.html">with jquery</a></td>
+<td>escaped code goes here</td>
+</tr>
+
 </tbody>
 
 </table>
@@ -194,13 +204,50 @@ a_js.addEventListener('click', function (event) {
 
 <table>
 
+
+<thead>
+<tr>
+<th>Link</th>
+<th>Code</th>
+</thead>
+
+<tbody>
+
 <tr>
 
 <td>
+<a id="js-extract" href="/javascript-and-ribs/popup.html">with javascript</a>
+
+<script>
+var a_js = document.getElementById('js-extract');
+
+var e;
+
+a_js.addEventListener('click', function (event) {
+    e = event;
+    alert(event.target.attributes.href.value);
+    event.preventDefault();
+});
+
+</script>
 
 </td>
 
-</body>
+<td>escaped code goes here</td>
+
+</tr>
+
+<tr>
+<td><a href="/javascript-and-ribs/popup.html">with dojo</a></td>
+<td>escaped code goes here</td>
+</tr>
+
+<tr>
+<td><a href="/javascript-and-ribs/popup.html">with jquery</a></td>
+<td>escaped code goes here</td>
+</tr>
+
+</tbody>
 
 </table>
 
