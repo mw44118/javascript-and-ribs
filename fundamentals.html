@@ -303,9 +303,15 @@ myDialog.show();
 
 <script type="text/javascript">
 function loadJsHtml(){
-var myXHR = new XMLHttpRequest();
-myXHR.open('GET',event.target.attributes.href.value,true);
+if(window.XMLHttpRequest){
+	var myXHR = new XMLHttpRequest();
+	}else
+	{
+	myXHR=new ActiveXObject("Microsoft.XMLHTTP");
+	}
 	document.getElementbyId('popup-goes-here').innerHTML=myXHR.responseText;
+	myXHR.open('GET',event.target.attributes.href.value,true);
+	myXHR.send();
 }
 
 </script>
@@ -318,27 +324,28 @@ myXHR.open('GET',event.target.attributes.href.value,true);
 
 <tr>
 <td><a onclick="loadHtml" href="/javascript-and-ribs/popup.html">with dojo</a>
+<script type="text/javascript">
 function loadHtml(){
 		dojo.xhrGet({url: '/javascript-and-ribs/popup.html',
 			     handleAs: "text",
-           		    load: function(data) {
- 			    	dojo.byId('popup-goes-here').innerHTML = data;
+           		    load: function(response) {
+ 			    	dojo.byId('popup-goes-here').innerHTML = response;
 		            },
          		    error: function(error) {
                			AJAXNode.innerHTML = "AJAX error: " + error;
 		            }
 		});
 		}
-		</td>
+	</script>	</td>
 <td>escaped code goes here</td>
 </tr>
 
 <tr>
-<td><a href="/javascript-and-ribs/popup.html">with jquery</a>
+<td><a id="jqueryextract" href="/javascript-and-ribs/popup.html">with jquery</a>
 
 <script>
-    $("a").click(function () { 
-		$("popup-goes-here").load($(this).attr("href"));
+    $("jqueryextract").click(function () { 
+		$("popup-goes-here").load("/javascript-and-ribs/popup.html");
     });
 	</script>
 	</td>
