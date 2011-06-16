@@ -67,41 +67,53 @@ tbody td, thead th
 </td>
 
 </tr>
+<tr>
 
-</tbody>
+<td><a href="http://google.com"
+        onclick="alert('google is garbage!  Use duckduckgo.com');">Search</a></td>
 
-</table>
+<td>
+&lt;a href="http://google.com"
+        onclick="alert('google is garbage!  Use duckduckgo.com');"&gt;Search&lt;/a&gt;
+</td>
 
-<ol>
+</tr>
+<tr>
 
-<li>
-<a href="http://google.com"
-        onclick="alert('google is garbage!  Use duckduckgo.com');">Search</a>
-</li>
-
-<li>
-
-<script>
+<td><script>
 var handle_click = function () {
     alert('Same thing...');
     return false;
 };
 </script>
 
-<a href="http://google.com" onclick="return handle_click();">Search</a>
+<a href="http://google.com" onclick="return handle_click();">Search</a></td>
 
-</li>
+<td>
+&lt;script&gt;
+var handle_click = function () {
+    alert('Same thing...');
+    return false;
+};
+&lt;/script&gt;
 
-<li>
-<a href="http://google.com" onclick="handle_click();">Search</a>
-</li>
+&lt;a href="http://google.com" onclick="return handle_click();"&gt;Search&lt;/a&gt;
+</td>
 
-<li>
-<a id="a-tag" href="http://google.com">Search</a>
+</tr>
 
-</li>
+<tr>
+<td><a href="http://google.com" onclick="handle_click();">Search</a></td>
+<td>&lt;a href="http://google.com" onclick="handle_click();"&gt;Search&lt;/a&gt;</td>
+</tr>
 
-<script>
+<tr>
+<td><a id="a-tag" href="http://google.com">Search</a></td>
+<td>&lt;a id="a-tag" href="http://google.com"&gt;Search&lt;/a&gt;</td>
+</tr>
+
+<tr>
+<td><script>
 
 var a = document.getElementById('a-tag');
 
@@ -110,13 +122,21 @@ a.addEventListener('click', function (event) {
     event.preventDefault();
 });
 
-</script>
+</script></td>
+<td>&lt;script&gt;
 
-</li>
+var a = document.getElementById('a-tag');
 
-<li>
+a.addEventListener('click', function (event) {
+    alert("Inside my click listener");
+    event.preventDefault();
+});
 
-<a id="a-tag-dojo" href="http://google.com">Search</a>
+&lt;/script&gt;</td>
+</tr>
+
+<tr>
+<td><a id="a-tag-dojo" href="http://google.com">Search</a>
 
 <script>
 
@@ -125,13 +145,21 @@ dojo.query('#a-tag-dojo').connect('click', function (event) {
     dojo.stopEvent(event);
 });
 
-</script>
+</script></td>
+<td>&lt;a id="a-tag-dojo" href="http://google.com"&gt;Search&lt;/a&gt;
 
-</li>
+&lt;script&gt;
 
-<li>
+dojo.query('#a-tag-dojo').connect('click', function (event) {
+    alert("dojo!");
+    dojo.stopEvent(event);
+});
 
-<a id="a-tag-jquery" href="http://google.com">Search</a>
+&lt;/script&gt;</td>
+</tr>
+
+<tr>
+<td><a id="a-tag-jquery" href="http://google.com">Search</a>
 
 <script>
 
@@ -140,11 +168,23 @@ $("#a-tag-jquery").click(function () {
     return false;
 });
 
-</script>
+</script></td>
+<td>&lt;a id="a-tag-jquery" href="http://google.com"&gt;Search&lt;/a&gt;
 
-</li>
+&lt;script&gt;
 
-</ol>
+$("#a-tag-jquery").click(function () {
+    alert("jquery");
+    return false;
+});
+
+&lt;/script&gt;</td>
+</tr>
+
+</tbody>
+
+</table>
+
 
 
 <h2>Extract the href attribute</h2>
