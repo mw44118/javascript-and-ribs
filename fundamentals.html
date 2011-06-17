@@ -96,7 +96,7 @@ a function&lt;/a&gt;
 </tr>
 
 <tr>
-<td><a id="a-tag" href="http://google.com">Use addEventListener or attachEevent</a>
+<td><a id="a-tag" href="http://google.com">Use addEventListener or attachEvent</a>
 <script>
 var a = document.getElementById('a-tag');
 
@@ -109,7 +109,7 @@ if (a.addEventListener) {
     a.addEventListener('click', f);
 }
 
-if (e.attachEvent) {
+if (a.attachEvent) {
     a.attachEvent('click', f);
 }
 
@@ -138,7 +138,56 @@ if (e.attachEvent) {<br>
 </tr>
 
 <tr>
-<td><a id="a-tag-dojo" href="http://google.com">Use dojo</a>
+
+<td>
+Add an onclick
+<a class="one-of-many" href="http://google.com">for</a>
+<a class="one-of-many" href="http://bing.com">several</a>
+<a class="one-of-many" href="http://yahoo.com">links</a>.
+
+<script>
+var links = document.getElementsByClassName('one-of-many');
+for (var i=0; i<links.length; i++) {
+
+    if (links[i].addEventListener) {
+        links[i].addEventListener('click', f);
+    }
+
+    if (links[i].attachEvent) {
+        links[i].attachEvent('click', f);
+    }
+
+}
+</script>
+</td>
+
+<td>
+Add an onclick<br>
+&lt;a class="one-of-many" href="http://google.com"&gt;for&lt;/a&gt;<br>
+&lt;a class="one-of-many" href="http://bing.com"&gt;several&lt;/a&gt;<br>
+&lt;a class="one-of-many" href="http://yahoo.com"&gt;links&lt;/a&gt;.<br>
+<br>
+&lt;script&gt;<br>
+var links = document.getElementsByClassName('one-of-many');<br>
+for (var i=0; i&lt;links.length; i++) {<br>
+<br>
+    if (links[i].addEventListener) {<br>
+        links[i].addEventListener('click', f);<br>
+    }<br>
+<br>
+    if (links[i].attachEvent) {<br>
+        links[i].attachEvent('click', f);<br>
+    }<br>
+<br>
+}<br>
+&lt;/script&gt;
+</td>
+
+</tr>
+
+<tr>
+<td><a id="a-tag-dojo" href="http://google.com">Use dojo for an anchor
+with an id</a>
 
 <script>
 
@@ -150,10 +199,37 @@ dojo.query('#a-tag-dojo').connect('click', function (event) {
 </script></td>
 
 <td>
-&lt;a id="a-tag-dojo" href="http://google.com"&gt;Use dojo&lt;/a&gt;
+&lt;a id="a-tag-dojo" href="http://google.com"&gt;Use dojo for an anchor
+with an id&lt;/a&gt;
 <p>
 &lt;script&gt;<br>
 dojo.query('#a-tag-dojo').connect('click', function (event) {<br>
+    alert("dojo!");<br>
+    dojo.stopEvent(event);<br>
+});<br>
+&lt;/script&gt;
+</td>
+</tr>
+
+<tr>
+<td><a class="dojo" href="http://google.com">Use dojo for an anchor with
+a class</a>
+
+<script>
+
+dojo.query('a.dojo').connect('click', function (event) {
+    alert("dojo!");
+    dojo.stopEvent(event);
+});
+
+</script></td>
+
+<td>
+&lt;a class="dojo" href="http://google.com"&gt;Use dojo for an anchor
+with a class&lt;/a&gt;
+<p>
+&lt;script&gt;<br>
+dojo.query('a.dojo').connect('click', function (event) {<br>
     alert("dojo!");<br>
     dojo.stopEvent(event);<br>
 });<br>
@@ -185,6 +261,31 @@ $("#a-tag-jquery").click(function () {<br>
 </td>
 </tr>
 
+<tr>
+<td><a class="jquery" href="http://google.com">Use jquery with a class
+selector</a>
+
+<script>
+
+$("a.jquery").click(function () {
+    alert("jquery class selector");
+    return false;
+});
+
+</script></td>
+
+<td>
+&lt;a class="jquery" href="http://google.com"&gt;Use jquery&lt;/a&gt;
+<p>
+&lt;script&gt;<br>
+$("a.jquery").click(function () {<br>
+    alert("jquery");<br>
+    return false;<br>
+});<br>
+&lt;/script&gt;
+</td>
+</tr>
+
 </tbody>
 
 </table>
@@ -202,12 +303,18 @@ the table has a bug.</li>
 <li>Dojo and jquery make it easy to ignore that different browsers work
 differently.</li>
 
+<li>Starting to use dojo and jquery is very easy -- just add a script
+tag to the top of your page and you're ready to go.  This may not even
+increase page load time, if your readers have already downloaded it
+while on another site.</li>
+
 </ul>
 
-<p><a href="/toc">table of contents</a>
+<ul>
+<li><a href="/toc">table of contents</a></li>
+<li><a href="/extract">Extracting hrefs from anchors</a></li>
+</ul>
 
 </body>
 
 </html>
-
-
