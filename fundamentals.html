@@ -6,34 +6,13 @@
 
 <title>Fun with click events</title>
 
+<link rel="stylesheet" href="/matt.css" type="text/css" />
+
 <script type="text/javascript"
     src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
 
 <script type="text/javascript"
     src="https://ajax.googleapis.com/ajax/libs/dojo/1.6.0/dojo/dojo.xd.js"></script>
-
-<style>
-body
-{
-    width:960px;
-    margin:auto;
-    font-family:helvetica, sans-serif;
-    font-size:14px;
-}
-table
-{
-    width:100%;
-    border-collapse:collapse;
-    border:5px solid lightgray;
-}
-tbody td, thead th
-{
-    text-align: left;
-    border:1px solid lightgray;
-    padding:1em;
-}
-
-</style>
 
 </head>
 
@@ -261,8 +240,8 @@ myDialog.show();
 <td><a href="/javascript-and-ribs/popup.html">with jquery</a>
 
 <script>
-    $("a").click(function () { 
-      alert($(this).attr("href")); 
+    $("a").click(function () {
+      alert($(this).attr("href"));
 	  event.preventDefault();
     });
 	</script>
@@ -270,8 +249,8 @@ myDialog.show();
 <td>&lt;a href="/javascript-and-ribs/popup.html"&gt;with jquery&lt;/a&gt;
 
 &lt;script&gt;
-    $("a").click(function () { 
-      alert($(this).attr("href")); 
+    $("a").click(function () {
+      alert($(this).attr("href"));
 	  event.preventDefault();
     });
 	&lt;/script&gt;</td>
@@ -344,7 +323,7 @@ function loadHtml(){
 <td><a id="jqueryextract" href="/javascript-and-ribs/popup.html">with jquery</a>
 
 <script>
-    $("jqueryextract").click(function () { 
+    $("jqueryextract").click(function () {
 		$("popup-goes-here").load("/javascript-and-ribs/popup.html");
     });
 	</script>

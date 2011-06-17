@@ -1,0 +1,19 @@
+body
+{
+    width:960px;
+    margin:auto;
+    font-family:helvetica, sans-serif;
+    font-size:14px;
+}
+table
+{
+    width:100%;
+    border-collapse:collapse;
+    border:5px solid lightgray;
+}
+tbody td, thead th
+{
+    text-align: left;
+    border:1px solid lightgray;
+    padding:1em;
+}
