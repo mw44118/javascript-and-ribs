@@ -33,7 +33,6 @@ dojo.subscribe('dojo.rockets.fired', dojo_rockets_fired);
 dojo.query('#dojo').connect('click', function () {
     dojo.publish('dojo.rockets.fired',
     [dojo.attr(dojo.byId("number-of-dojo-rockets"), "value")])});
-
 });
 
 var jquery_setup = function () {
@@ -54,7 +53,6 @@ var jquery_setup = function () {
     });
 
     $(document).bind('jquery.rockets.fired', function () {
-        console.debug(arguments);
         alert(arguments[1] + " jquery rockets fired!");
     });
 };

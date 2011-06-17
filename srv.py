@@ -17,6 +17,7 @@ paths = dict({
     '/jquery-ui-favorites': 'jquery_ui_favorites.html',
     '/deferred-objects': 'deferred_objects.html',
     '/pub-sub-vs-jquery-custom-events': 'pub_sub_vs_jquery_custom_events.html',
+    '/pub-sub-vs-custom-events': 'pub_sub_vs_jquery_custom_events.html',
     '/editorial': 'editorial.html',
 })
 
