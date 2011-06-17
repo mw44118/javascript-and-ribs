@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Matt's favorite jquery UI components</title>
+
+<link rel="stylesheet" href="/matt.css" type="text/css" />
+
+<script type="text/javascript"
+    src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+
+<script type="text/javascript"
+    src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.js"></script>
+
+<link type="text/css"
+    rel="stylesheet"
+    href="http://www.imgag.com/css/jquery/redmond/jquery-ui-1.8.10.custom.css">
+
+<script type="text/javascript">
+$(document).ready(function () {
+
+    $("#datepicker1, #datepicker2").datepicker();
+
+    $("#popup").click(function () {
+        $("#dialogdiv").dialog({modal:true}).load($(this).attr('href'));
+        return false;
+    });
+
+    // Use your imagination and pretend we got this via AJAX.
+    var fruits = ['apples', 'bananas', 'carrots'];
+
+    $("#you-autocomplete-me").autocomplete({
+        source: fruits
+    });
+
+    $("#slide-me").slider({
+        min:1,
+        max:100,
+
+        slide: function (event, ui) {
+            $("#score").val(ui.value);
+        }});
+
+});
+
+</script>
+
+</head>
+
+<body>
+
+<h1>Matt's favorite jquery UI components</h1>
+
+<h2>datepicker</h2>
+
+<div id="datepicker2"></div>
+
+<input type="text" id="datepicker1" />
+
+<h2>dialog</h2>
+
+<a href="/popup" id="popup">popup</a>
+
+<div id="dialogdiv"></div>
+
+<h2>autocomplete</h2>
+
+<input type="text" id="you-autocomplete-me" />
+
+<h2>slider</h2>
+
+<div id="slide-me" style="width:300px;"></div>
+
+<input type="text" id="score" />
+
+<ul>
+<li><a href="/toc">table of contents</a></li>
+<li><a href="/deferred-objects">Deferred objects</a></li>
+</ul>
+
+</body>
+
+</html>
