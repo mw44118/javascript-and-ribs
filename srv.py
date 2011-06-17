@@ -7,6 +7,7 @@ import wsgiref.simple_server
 logging.basicConfig(level=logging.DEBUG)
 
 paths = dict({
+    '/': 'toc.html',
     '/fundamentals': 'fundamentals.html',
     '/popup': 'popup.html',
     '/matt.css': 'matt.css',
