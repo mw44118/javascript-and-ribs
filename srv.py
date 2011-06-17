@@ -1,23 +1,28 @@
 # vim: set expandtab ts=4 sw=4 filetype=python:
 
 import logging
+import mimetypes
 import wsgiref.simple_server
 
 logging.basicConfig(level=logging.DEBUG)
 
+paths = dict({
+    '/fundamentals': 'fundamentals.html',
+    '/popup': 'popup.html',
+    '/matt.css': 'matt.css',
+    '/toc': 'toc.html',
+    '/extract': 'extract.html',
+})
+
+
 def app(environ, start_response):
 
-    if environ['PATH_INFO'] == '/fundamentals':
-        start_response('200 OK', [('Content-Type', 'text/html')])
-        return [open('./fundamentals.html').read()]
+    file_to_read = paths.get(environ['PATH_INFO'])
 
-    elif environ['PATH_INFO'] == '/popup':
-        start_response('200 OK', [('Content-Type', 'text/html')])
-        return [open('./popup.html').read()]
-
-    elif environ['PATH_INFO'] == '/matt.css':
-        start_response('200 OK', [('Content-Type', 'text/css')])
-        return [open('./matt.css').read()]
+    if file_to_read:
+        mimetype, encoding = mimetypes.guess_type(file_to_read)
+        start_response('200 OK', [('Content-Type', mimetype)])
+        return [open(file_to_read).read()]
 
     else:
         start_response('404 OK', [('Content-Type', 'text/plain')])

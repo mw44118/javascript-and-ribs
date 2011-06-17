@@ -4,16 +4,23 @@ body
     margin:auto;
     font-family:helvetica, sans-serif;
     font-size:14px;
+    line-height:20px;
 }
 table
 {
     width:100%;
     border-collapse:collapse;
     border:5px solid lightgray;
+    margin: 10px 0;
 }
 tbody td, thead th
 {
     text-align: left;
     border:1px solid lightgray;
     padding:1em;
+}
+
+td:nth-child(2n)
+{
+    font-family:courier,monospace;
 }
