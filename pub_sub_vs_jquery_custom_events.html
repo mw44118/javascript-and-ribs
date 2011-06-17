@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Dojo publish-subscribe vs jquery custom events</title>
+
+<link rel="stylesheet" href="/matt.css" type="text/css" />
+
+<script type="text/javascript"
+    src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+
+<script type="text/javascript"
+    src="https://ajax.googleapis.com/ajax/libs/dojo/1.6.0/dojo/dojo.xd.js"></script>
+
+<script type="text/javascript"
+    src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.js"></script>
+
+<link type="text/css"
+    rel="stylesheet"
+    href="http://www.imgag.com/css/jquery/redmond/jquery-ui-1.8.10.custom.css">
+
+<script type="text/javascript">
+dojo.addOnLoad(function () {
+
+var dojo_rockets_fired = function () {
+    alert(arguments[0] + ' dojo rockets fired!');
+};
+
+dojo.subscribe('dojo.rockets.fired', dojo_rockets_fired);
+
+dojo.query('#dojo').connect('click', function () {
+    dojo.publish('dojo.rockets.fired',
+    [dojo.attr(dojo.byId("number-of-dojo-rockets"), "value")])});
+
+});
+
+var jquery_setup = function () {
+
+    $("#slide-me").slider({
+        min:1,
+        max:10,
+
+        slide: function (event, ui) {
+            $("#number-of-jquery-rockets").val(ui.value);
+        }});
+
+    $("#jquery").click(function () {
+
+        $(document).trigger(
+            'jquery.rockets.fired',
+            [$("#number-of-jquery-rockets").val()]);
+    });
+
+    $(document).bind('jquery.rockets.fired', function () {
+        console.debug(arguments);
+        alert(arguments[1] + " jquery rockets fired!");
+    });
+};
+
+$(document).ready(jquery_setup);
+
+</script>
+
+</head>
+
+<body>
+
+<h1>Dojo publish-subscribe vs jquery custom events</h1>
+
+<h2>Dojo publish-subscribe</h2>
+
+<input type="text" value="" id="number-of-dojo-rockets" />
+<input type="button" value="shoot dojo rockets" id="dojo" />
+
+<h2>jquery custom event</h2>
+
+<div id="slide-me" style="width:300px;"></div>
+<input type="text" value="" id="number-of-jquery-rockets" />
+<input type="button" value="shoot jquery rockets" id="jquery" />
+
+<ul>
+<li><a href="/toc">table of contents</a></li>
+</ul>
+
+</body>
+
+</html>
