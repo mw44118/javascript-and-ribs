@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Deferred objects</title>
+
+<link rel="stylesheet" href="/matt.css" type="text/css" />
+
+<script type="text/javascript"
+    src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+
+<script type="text/javascript"
+    src="https://ajax.googleapis.com/ajax/libs/dojo/1.6.0/dojo/dojo.xd.js"></script>
+
+<script type="text/javascript">
+dojo.require('dojo.DeferredList');
+dojo.addOnLoad(function () {
+
+    var cb1 = new dojo.Deferred();
+    var cb2 = new dojo.Deferred();
+    var cb3 = new dojo.Deferred();
+
+    var ddl = new dojo.DeferredList([cb1, cb2, cb3]);
+
+    dojo.query("#dojo-box1").connect('click', function () {
+        cb1.resolve();
+    });
+
+    dojo.query("#dojo-box2").connect('click', function () {
+        cb2.resolve();
+    });
+
+    dojo.query("#dojo-box3").connect('click', function () {
+        cb3.resolve();
+    });
+
+    ddl.addCallback(function () {
+        alert("dojo: The last one got checked!");
+    });
+
+});
+
+var jquery_setup = function () {
+
+    var cb1 = new $.Deferred();
+    var cb2 = new $.Deferred();
+    var cb3 = new $.Deferred();
+
+    $("#jquery-box1").click(function () {
+        cb1.resolve();
+    });
+
+    $("#jquery-box2").click(function () {
+        cb2.resolve();
+    });
+
+    $("#jquery-box3").click(function () {
+        cb3.resolve();
+    });
+
+    $.when(cb1, cb2, cb3).then(function () {
+        alert("All the jquery buttons got checked!");
+    });
+
+};
+
+$(document).ready(jquery_setup);
+
+</script>
+
+</head>
+
+<body>
+
+<h1>Deferred objects</h1>
+
+
+<h2>Fire a callback when all three checkboxes get checked</h2>
+
+<h3>Dojo</h3>
+
+<ul>
+<li><input type="checkbox" id="dojo-box1" /></li>
+<li><input type="checkbox" id="dojo-box2" /></li>
+<li><input type="checkbox" id="dojo-box3" /></li>
+</ul>
+
+<code style="white-space:pre">
+dojo.require('dojo.DeferredList');
+dojo.addOnLoad(function () {
+
+    var cb1 = new dojo.Deferred();
+    var cb2 = new dojo.Deferred();
+    var cb3 = new dojo.Deferred();
+
+    var ddl = new dojo.DeferredList([cb1, cb2, cb3]);
+
+    dojo.query("#box1").connect('click', function () {
+        cb1.resolve();
+    });
+
+    dojo.query("#box2").connect('click', function () {
+        cb2.resolve();
+    });
+
+    dojo.query("#box3").connect('click', function () {
+        cb3.resolve();
+    });
+
+    ddl.addCallback(function () {
+        alert("dojo: the last one got checked!");
+    });
+
+});
+</code>
+
+<h3>jquery</h3>
+
+<ul>
+<li><input type="checkbox" id="jquery-box1" /></li>
+<li><input type="checkbox" id="jquery-box2" /></li>
+<li><input type="checkbox" id="jquery-box3" /></li>
+</ul>
+
+<code style="white-space:pre">
+</code>
+
+<ul>
+<li><a href="/toc">table of contents</a></li>
+<li><a href="/deferred-objects">Dojo publish-subscribe vs jquery custom events</a></li>
+</ul>
+
+</body>
+
+</html>
+
