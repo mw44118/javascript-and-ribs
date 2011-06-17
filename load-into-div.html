@@ -106,33 +106,75 @@ a_js_load.addEventListener('click', loadJsHtml);<br>
 </tr>
 
 <tr>
-<td><a onclick="loadHtml" href="/popup">with dojo</a>
+<td>
+
+<a id="dojo" href="/popup">with dojo</a>
+
 <script type="text/javascript">
-function loadHtml(){
-		dojo.xhrGet({url: '/popup',
-			     handleAs: "text",
-           		    load: function(response) {
- 			    	dojo.byId('popup-goes-here').innerHTML = response;
-		            },
-         		    error: function(error) {
-               			AJAXNode.innerHTML = "AJAX error: " + error;
-		            }
-		});
-		}
-	</script>	</td>
-<td>escaped code goes here</td>
+
+dojo.query('#dojo').connect('click', function (event) {
+
+    dojo.xhrGet({
+        url: dojo.attr(dojo.byId("dojo"), "href"),
+        handleAs: "text",
+
+        load: function(response) {
+            dojo.byId('popup-goes-here').innerHTML = response;
+        },
+
+        error: function(error) {
+            AJAXNode.innerHTML = "AJAX error: " + error;
+        }
+
+    });
+
+    dojo.stopEvent(event);
+
+});
+
+</script>
+
+</td>
+
+<td>
+&lt;a id="dojo" href="/popup"&gt;with dojo&lt;/a&gt;<br>
+&lt;script type="text/javascript"&gt;<br>
+dojo.query('#dojo').connect('click', function (event) {<br>
+    dojo.xhrGet({<br>
+        url: dojo.attr(dojo.byId("dojo"), "href"),<br>
+        handleAs: "text",<br>
+        load: function(response) {<br>
+            dojo.byId('popup-goes-here').innerHTML = response;<br>
+        },<br>
+        error: function(error) {<br>
+            AJAXNode.innerHTML = "AJAX error: " + error;<br>
+        }<br>
+    });<br>
+    dojo.stopEvent(event);<br>
+});<br>
+&lt;/script&gt;<br>
+</td>
 </tr>
 
 <tr>
-<td><a id="jqueryextract" href="/popup">with jquery</a>
-
+<td>
+<a id="jquery" href="/popup">with jquery</a>
 <script>
-    $("jqueryextract").click(function () {
-		$("popup-goes-here").load("/popup");
-    });
-	</script>
-	</td>
-<td>escaped code goes here</td>
+$("#jquery").click(function () {
+    $("#popup-goes-here").load($(this).attr('href'));
+    return false;
+});
+</script>
+</td>
+
+<td>
+&lt;a id="jquery" href="/popup"&gt;with jquery&lt;/a&gt;<br>
+&lt;script&gt;<br>
+$("#jquery").click(function () {<br>
+    $("popup-goes-here").load($(this).attr('href'));<br>
+});<br>
+&lt;/script&gt;<br>
+</td>
 </tr>
 
 </tbody>
