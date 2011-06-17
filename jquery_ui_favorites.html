@@ -21,7 +21,8 @@
 <script type="text/javascript">
 $(document).ready(function () {
 
-    $("#datepicker1, #datepicker2").datepicker();
+    $("#datepicker2").datepicker({minDate: new Date()});
+    $("#datepicker1").datepicker({changeMonth:true, changeYear: true});
 
     $("#popup").click(function () {
         $("#dialogdiv").dialog({modal:true}).load($(this).attr('href'));
