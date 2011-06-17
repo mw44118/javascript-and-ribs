@@ -33,15 +33,12 @@
 <tr>
 
 <td>
-<a id="js-extract" href="/javascript-and-ribs/popup.html">with javascript</a>
+<a id="js-extract" href="/popup">with javascript</a>
 
 <script>
 var a_js = document.getElementById('js-extract');
 
-var e;
-
 a_js.addEventListener('click', function (event) {
-    e = event;
     alert(event.target.attributes.href.value);
     event.preventDefault();
 });
@@ -50,65 +47,78 @@ a_js.addEventListener('click', function (event) {
 
 </td>
 
-<td>&lt;a id="js-extract" href="/javascript-and-ribs/popup.html"&gt;with javascript&lt;/a&gt;
-
-&lt;script&gt;
-var a_js = document.getElementById('js-extract');
-
-var e;
-
-a_js.addEventListener('click', function (event) {
-    e = event;
-    alert(event.target.attributes.href.value);
-    event.preventDefault();
-});
-
+<td>
+&lt;a id="js-extract" href="/popup"&gt;with javascript&lt;/a&gt;<br>
+<br>
+&lt;script&gt;<br>
+var a_js = document.getElementById('js-extract');<br>
+<br>
+a_js.addEventListener('click', function (event) {<br>
+    alert(event.target.attributes.href.value);<br>
+    event.preventDefault();<br>
+});<br>
+<br>
 &lt;/script&gt;
 </td>
 
 </tr>
 
 <tr>
-<td><a id="dojo" onclick="showDialog" href="/javascript-and-ribs/popup.html">with dojo</a> <script type="text/javascript">
-dojo.require("dijit.Dialog");
-myDialog=new dijit.Dialog({
-title: "The href",
-content: dojo.attr(dojo.byId("dojo"), "href"),
-style: "width: 200px"});
-function showDialog(){
-myDialog.show();
-}
-</script></td>
-<td>&lt;a id="dojo" onclick="showDialog" href="/javascript-and-ribs/popup.html"&gt;with dojo&lt;/a&gt; &lt;script type="text/javascript"&gt;
-dojo.require("dijit.Dialog");
-myDialog=new dijit.Dialog({
-title: "The href",
-content: dojo.attr(dojo.byId("dojo"), "href"),
-style: "width: 200px"});
-function showDialog(){
-myDialog.show();
-}
-&lt;/script&gt;</td>
+
+<td>
+<a id="dojo" href="/popup">with dojo</a>
+
+<script type="text/javascript">
+
+dojo.query('#dojo').connect('click', function (event) {
+    alert(dojo.attr(dojo.byId("dojo"), "href"));
+    dojo.stopEvent(event);
+});
+
+</script>
+
+</td>
+
+<td>
+&lt;a id="dojo" href="/popup"&gt;with dojo&lt;/a&gt;<br>
+<br>
+&lt;script type="text/javascript"&gt;<br>
+<br>
+dojo.query('#dojo').connect('click', function (event) {<br>
+    alert(dojo.attr(dojo.byId("dojo"), "href"));<br>
+    dojo.stopEvent(event);<br>
+});<br>
+<br>
+&lt;/script&gt;<br>
+<br>
+</td>
+
 </tr>
 
 <tr>
-<td><a href="/javascript-and-ribs/popup.html">with jquery</a>
+<td><a id="a-jquery" href="/popup">with jquery</a>
 
 <script>
-    $("a").click(function () {
-      alert($(this).attr("href"));
-	  event.preventDefault();
-    });
-	</script>
-	</td>
-<td>&lt;a href="/javascript-and-ribs/popup.html"&gt;with jquery&lt;/a&gt;
+$("a#a-jquery").click(function () {
+    alert($(this).attr("href"));
+    return false;
+});
+</script>
 
-&lt;script&gt;
-    $("a").click(function () {
-      alert($(this).attr("href"));
-	  event.preventDefault();
-    });
-	&lt;/script&gt;</td>
+</td>
+
+<td>
+&lt;a id="a-jquery" href="/popup"&gt;with jquery&lt;/a&gt;<br>
+<br>
+&lt;script&gt;<br>
+$("a#a-jquery").click(function () {<br>
+    alert($(this).attr("href"));<br>
+    return false;<br>
+});<br>
+&lt;/script&gt;<br>
+<br>
+</td>
+
 </tr>
 
 </tbody>
@@ -133,7 +143,7 @@ myDialog.show();
 <tr>
 
 <td>
-<a id="js-extract" onclick="loadJsHtml" href="/javascript-and-ribs/popup.html">with javascript</a>
+<a id="js-extract" onclick="loadJsHtml" href="/popup">with javascript</a>
 
 <script type="text/javascript">
 function loadJsHtml(){
@@ -157,10 +167,10 @@ if(window.XMLHttpRequest){
 </tr>
 
 <tr>
-<td><a onclick="loadHtml" href="/javascript-and-ribs/popup.html">with dojo</a>
+<td><a onclick="loadHtml" href="/popup">with dojo</a>
 <script type="text/javascript">
 function loadHtml(){
-		dojo.xhrGet({url: '/javascript-and-ribs/popup.html',
+		dojo.xhrGet({url: '/popup',
 			     handleAs: "text",
            		    load: function(response) {
  			    	dojo.byId('popup-goes-here').innerHTML = response;
@@ -175,11 +185,11 @@ function loadHtml(){
 </tr>
 
 <tr>
-<td><a id="jqueryextract" href="/javascript-and-ribs/popup.html">with jquery</a>
+<td><a id="jqueryextract" href="/popup">with jquery</a>
 
 <script>
     $("jqueryextract").click(function () {
-		$("popup-goes-here").load("/javascript-and-ribs/popup.html");
+		$("popup-goes-here").load("/popup");
     });
 	</script>
 	</td>
@@ -189,8 +199,6 @@ function loadHtml(){
 </tbody>
 
 </table>
-
--->
 
 <body>
 
