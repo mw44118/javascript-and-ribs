@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Load another page into a div</title>
+
+<link rel="stylesheet" href="/matt.css" type="text/css" />
+
+<script type="text/javascript"
+    src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+
+<script type="text/javascript"
+    src="https://ajax.googleapis.com/ajax/libs/dojo/1.6.0/dojo/dojo.xd.js"></script>
+
+</head>
+
+<body>
+
+<h1>Load another page into a div</h1>
+
+<h2>Load the content of another page into the box below</h2>
+
+<div id="popup-goes-here" style="border:3px solid gray;width:200px;height:200px;"></div>
+
+<table>
+
+<thead>
+<tr>
+<th>Link</th>
+<th>Code</th>
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>
+<a id="js-load" href="/popup">with javascript</a>
+
+<script type="text/javascript">
+
+function loadJsHtml (event) {
+
+    event.preventDefault();
+
+    if(window.XMLHttpRequest){
+        var myXHR = new XMLHttpRequest();
+    }
+    else
+    {
+        myXHR=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+
+    myXHR.onreadystatechange = function () {
+
+        if (myXHR.readyState == myXHR.DONE) {
+            document.getElementById('popup-goes-here').innerHTML = myXHR.responseText;
+        }
+    };
+
+    myXHR.open('GET',event.target.attributes.href.value,true);
+    myXHR.send();
+}
+
+var a_js_load = document.getElementById('js-load');
+
+a_js_load.addEventListener('click', loadJsHtml);
+
+
+</script>
+
+</td>
+
+<td>
+&lt;a id="js-load" href="/popup"&gt;with javascript&lt;/a&gt;<br>
+&lt;script type="text/javascript"&gt;<br>
+function loadJsHtml (event) {<br>
+    event.preventDefault();<br>
+    if(window.XMLHttpRequest){<br>
+        var myXHR = new XMLHttpRequest();<br>
+    }<br>
+    else<br>
+    {<br>
+        myXHR=new ActiveXObject("Microsoft.XMLHTTP");<br>
+    }<br>
+<br>
+    myXHR.onreadystatechange = function () {<br>
+        if (myXHR.readyState == myXHR.DONE) {<br>
+            document.getElementById('popup-goes-here').innerHTML = myXHR.responseText;<br>
+        }<br>
+    };<br>
+<br>
+    myXHR.open('GET',event.target.attributes.href.value,true);<br>
+    myXHR.send();<br>
+}<br>
+var a_js_load = document.getElementById('js-load');<br>
+a_js_load.addEventListener('click', loadJsHtml);<br>
+<br>
+&lt;/script&gt;<br>
+
+</td>
+
+</tr>
+
+<tr>
+<td><a onclick="loadHtml" href="/popup">with dojo</a>
+<script type="text/javascript">
+function loadHtml(){
+		dojo.xhrGet({url: '/popup',
+			     handleAs: "text",
+           		    load: function(response) {
+ 			    	dojo.byId('popup-goes-here').innerHTML = response;
+		            },
+         		    error: function(error) {
+               			AJAXNode.innerHTML = "AJAX error: " + error;
+		            }
+		});
+		}
+	</script>	</td>
+<td>escaped code goes here</td>
+</tr>
+
+<tr>
+<td><a id="jqueryextract" href="/popup">with jquery</a>
+
+<script>
+    $("jqueryextract").click(function () {
+		$("popup-goes-here").load("/popup");
+    });
+	</script>
+	</td>
+<td>escaped code goes here</td>
+</tr>
+
+</tbody>
+
+</table>
+
+<ul>
+<li><a href="/toc">table of contents</a></li>
+<li><a href="/jquery-ui-favorites">My favorite jquery UI components</a></li>
+</ul>
+
+<body>
+
+</html>

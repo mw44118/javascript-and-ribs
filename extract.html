@@ -39,6 +39,7 @@
 var a_js = document.getElementById('js-extract');
 
 a_js.addEventListener('click', function (event) {
+
     alert(event.target.attributes.href.value);
     event.preventDefault();
 });
@@ -125,80 +126,10 @@ $("a#a-jquery").click(function () {<br>
 
 </table>
 
-<h2>Load the content of another page into the box below</h2>
-
-<div id="popup-goes-here" style="border:3px solid gray;width:200px;height:200px;"></div>
-
-<table>
-
-
-<thead>
-<tr>
-<th>Link</th>
-<th>Code</th>
-</thead>
-
-<tbody>
-
-<tr>
-
-<td>
-<a id="js-extract" onclick="loadJsHtml" href="/popup">with javascript</a>
-
-<script type="text/javascript">
-function loadJsHtml(){
-if(window.XMLHttpRequest){
-	var myXHR = new XMLHttpRequest();
-	}else
-	{
-	myXHR=new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	document.getElementbyId('popup-goes-here').innerHTML=myXHR.responseText;
-	myXHR.open('GET',event.target.attributes.href.value,true);
-	myXHR.send();
-}
-
-</script>
-
-</td>
-
-<td>escaped code goes here</td>
-
-</tr>
-
-<tr>
-<td><a onclick="loadHtml" href="/popup">with dojo</a>
-<script type="text/javascript">
-function loadHtml(){
-		dojo.xhrGet({url: '/popup',
-			     handleAs: "text",
-           		    load: function(response) {
- 			    	dojo.byId('popup-goes-here').innerHTML = response;
-		            },
-         		    error: function(error) {
-               			AJAXNode.innerHTML = "AJAX error: " + error;
-		            }
-		});
-		}
-	</script>	</td>
-<td>escaped code goes here</td>
-</tr>
-
-<tr>
-<td><a id="jqueryextract" href="/popup">with jquery</a>
-
-<script>
-    $("jqueryextract").click(function () {
-		$("popup-goes-here").load("/popup");
-    });
-	</script>
-	</td>
-<td>escaped code goes here</td>
-</tr>
-
-</tbody>
-
-</table>
+<ul>
+<li><a href="/toc">table of contents</a></li>
+<li><a href="/load-into-div">Load another page into this page</a></li>
+</ul>
 
 <body>
 

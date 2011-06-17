@@ -13,6 +13,7 @@ paths = dict({
     '/matt.css': 'matt.css',
     '/toc': 'toc.html',
     '/extract': 'extract.html',
+    '/load-into-div': 'load-into-div.html',
     '/jquery-ui-favorites': 'jquery_ui_favorites.html',
     '/deferred-objects': 'deferred_objects.html',
     '/pub-sub-vs-jquery-custom-events': 'pub_sub_vs_jquery_custom_events.html',
